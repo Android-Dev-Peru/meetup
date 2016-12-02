@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MeetUp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="stores">Tiendas</string>
+    <string name="find_them">Encuentralos</string>
+    <string name="menu">Menú</string>
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus accusantium consequuntur dolorem eligendi impedit neque obcaecati recusandae ullam vitae.
+    </string>
+    <string name="lorem">Lorem ipsum</string>
+</resources>
