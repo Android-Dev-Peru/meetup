@@ -12,6 +12,7 @@ import android.view.View;
 import io.realm.Realm;
 import io.realm.RealmList;
 import pe.com.peruapps.meetup.fragments.MapFragment;
+import pe.com.peruapps.meetup.fragments.Navigation;
 import pe.com.peruapps.meetup.fragments.NavigationDrawerFragment;
 import pe.com.peruapps.meetup.fragments.ProductsFragment;
 import pe.com.peruapps.meetup.fragments.StoresFragment;
@@ -19,10 +20,11 @@ import pe.com.peruapps.meetup.models.Product;
 import pe.com.peruapps.meetup.models.Store;
 import pe.com.peruapps.meetup.util.MarshMallowPermission;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Navigation{
     private Realm realm;
     private DrawerLayout drawerLayout;
     private NavigationDrawerFragment navigationDrawerFragment;
+    private Fragment mMapFragment, mProductsFragment, mStoresFragment;
     private MarshMallowPermission mallowPermission = new MarshMallowPermission(this);
 
     @Override
@@ -56,33 +58,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        Fragment newFragment = new ProductsFragment();
+        mProductsFragment = new ProductsFragment();
+        mStoresFragment = new StoresFragment();
+        mMapFragment = new MapFragment();
+
+
+
+        //Fragment newFragment = new ProductsFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_layout, newFragment).commit();
+        ft.replace(R.id.frame_layout, mProductsFragment ).commit();
     }
 
     public void openDrawer(View view) {
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
-    public void loadProducts() {
-        Fragment newFragment = new ProductsFragment();
+    @Override public void loadProducts() {
+        //Fragment newFragment = new ProductsFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_layout, newFragment);
+        ft.replace(R.id.frame_layout, mProductsFragment);
         ft.addToBackStack("Products");
         ft.commit();
     }
 
-    public void loadStores() {
-        Fragment newFragment = new StoresFragment();
+    @Override public void loadStores() {
+        //Fragment newFragment = new StoresFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_layout, newFragment).addToBackStack("Stores").commit();
+        ft.replace(R.id.frame_layout, mStoresFragment).addToBackStack("Stores").commit();
     }
 
-    public void loadMap() {
-        Fragment newFragment = new MapFragment();
+    @Override public void loadMap() {
+        //Fragment newFragment = new MapFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_layout, newFragment).addToBackStack("Map").commit();
+        ft.replace(R.id.frame_layout, mMapFragment).addToBackStack("Map").commit();
     }
 
     private void setProducts() {
